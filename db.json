@@ -1,0 +1,16 @@
+{
+  "login": [
+    {
+      "id": 1,
+      "name": "Miguel",
+      "email": "majo.maken@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": 2,
+      "name": "Juan",
+      "email": "juan@gmail.com",
+      "password": "123456"
+    }
+  ]
+}
