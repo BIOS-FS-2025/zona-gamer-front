@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -13,10 +15,11 @@ function AuthProvider({ children }) {
 
       if (token && infoUser) {
         setUser(JSON.parse(infoUser));
-        navigate("/dashboard");
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   }, []);
 
@@ -25,6 +28,7 @@ function AuthProvider({ children }) {
       const { user, token } = userData;
       localStorage.setItem("authToken", token);
       localStorage.setItem("user", JSON.stringify(user));
+      setUser(user);
       navigate("/dashboard");
     } catch (error) {
       console.error(error);
@@ -46,6 +50,9 @@ function AuthProvider({ children }) {
     login,
     logout,
     isAuthenticated: !!user, // if (user) return true/false
+    setIsLoading,
+    isLoading,
+    user
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -4,7 +4,8 @@
       "id": 1,
       "name": "Miguel",
       "email": "majo.maken@gmail.com",
-      "password": "123456"
+      "password": "123456",
+      "role": "admin"
     },
     {
       "id": 2,
